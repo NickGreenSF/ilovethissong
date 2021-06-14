@@ -3,9 +3,12 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 
 const fetchListing = async () => {
+  const url = String(document.URL);
+  const idStr = url.split('=');
+  const id = parseInt(idStr[1]);
   const res = await axios('/api/listing/getListingByID', {
     params: {
-      listingId: 1,
+      listingId: id,
     },
   });
   console.log(res);
