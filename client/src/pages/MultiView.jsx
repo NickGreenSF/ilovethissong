@@ -29,6 +29,7 @@ function MultiView() {
             artist={listing.artist}
             description={listing.description}
             user={listing.user.username}
+            createdAt={listing.createdAt}
           />
         </div>
       ))}

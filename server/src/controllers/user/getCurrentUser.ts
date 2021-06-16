@@ -5,7 +5,7 @@ import { CustomRequest } from '../../types/ExpressExtensions'
 // WORKING
 
 export const getCurrentUser = async (req: CustomRequest, res: Response) => {
-  console.log('get current user')
+  // console.log('get current user')
   //console.log(req.session)
   if (req.session) {
     //console.log(req.session)
