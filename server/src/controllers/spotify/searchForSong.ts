@@ -10,8 +10,8 @@ export const searchForSong = async (req: Request, res: Response) => {
     })
   }
   const spot = new SpotifyWebApi({
-    clientId: 'f7ae4b95d9b54eafa91b67bcddacb6f3',
-    clientSecret: 'a9bafb68cbcb4b7983b355a43862fe76',
+    clientId: process.env.SPOTIFY_ID,
+    clientSecret: process.env.SPOTIFY_SECRET,
   })
   spot.clientCredentialsGrant().then(
     function (data) {
