@@ -28,6 +28,7 @@
     "multer-s3": "^2.9.0",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5",
+    "spotify-web-api-node": "^5.0.2",
     "ts-node": "^9.0.0",
     "typeorm": "^0.2.29",
     "uuid": "^8.3.2"

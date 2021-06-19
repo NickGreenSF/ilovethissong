@@ -15,6 +15,7 @@ import session, { SessionOptions } from 'express-session'
 // my imports
 import listingRouter from './routes/listing'
 import userRouter from './routes/user'
+import spotifyRouter from './routes/spotify'
 import { createNewConnection } from './database/connectTypeorm'
 import { sessionConfig } from './utils/sessionConfig'
 
@@ -55,6 +56,7 @@ const main = async () => {
   // ~ ROUTES
   app.use('/api/listing', listingRouter)
   app.use('/api/user', userRouter)
+  app.use('/api/spotify', spotifyRouter)
 
   // all other routes, serve frontend from client folder in prod
   if (process.env.NODE_ENV === 'production') {
