@@ -9,24 +9,21 @@ import {
 import { User } from './User'
 
 @Entity()
-export class Listing extends BaseEntity {
+export class Message extends BaseEntity {
   @PrimaryGeneratedColumn()
-  listing_id!: number
-
-  @Column()
-  title!: string
-
-  @Column()
-  artist!: string
+  message_id!: number
 
   @Column({
     length: 3000,
   })
-  description: string
+  body: string
 
   @CreateDateColumn()
   createdAt = new Date()
 
-  @ManyToOne(() => User, (user) => user.listings, {})
-  user!: User
+  @ManyToOne(() => User, (user) => user.sentMessages, {})
+  sender!: User
+
+  @ManyToOne(() => User, (user) => user.receivedMessages, {})
+  receiver!: User
 }

@@ -61,7 +61,7 @@ export const postListing = async (req: Request, res: Response) => {
 
   res.send({
     message: 'listing successfully created',
-    listing: {id: newListing.listing_id},
+    listing: { id: newListing.listing_id },
     errors: [],
   })
 }

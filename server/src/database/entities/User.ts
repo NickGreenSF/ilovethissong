@@ -1,5 +1,6 @@
 import { PrimaryGeneratedColumn, Entity, Column, BaseEntity, OneToMany } from 'typeorm'
 import { Listing } from './Listing'
+import { Message } from './Message'
 
 @Entity()
 export class User extends BaseEntity {
@@ -24,4 +25,10 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Listing, (listing) => listing.user, {})
   listings!: Listing[]
+
+  @OneToMany(() => Message, (message) => message.sender, {})
+  sentMessages!: Listing[]
+
+  @OneToMany(() => Message, (message) => message.receiver, {})
+  receivedMessages!: Listing[]
 }
