@@ -26,7 +26,7 @@ const fetchListing = async () => {
   }
   const user = await axios('/api/user/getCurrentUser');
   console.log(user);
-  currentUser = user;
+  currentUser = user.data.user;
   const res = await axios('/api/listing/getListingByID', {
     params: {
       listingId: id,
@@ -37,7 +37,7 @@ const fetchListing = async () => {
     isUser = [res.data.listing.user.username, res.data.listing.user.user_id];
   }
   console.log(isUser);
-  if (res.data.listing.user.user_id === user.data.user.id) {
+  if (user.data.user && res.data.listing.user.user_id === user.data.user.id) {
     thisUser = true;
     console.log('this user made this');
   }
@@ -77,7 +77,7 @@ function SoloView() {
       alert('You must log in to submit listings.');
       return;
     }
-    if (currentUser.data.user.banned) {
+    if (currentUser.banned) {
       alert('You are banned and cannot submit listings.');
     }
     axios({
@@ -85,7 +85,7 @@ function SoloView() {
       url: '/api/message/postMessage',
       data: {
         messageBody: formData.body,
-        senderId: currentUser.data.user.id,
+        senderId: currentUser.id,
         receiverId: isUser[1],
       },
     }).then(alert('Message successfully sent'), setShow(false));
@@ -100,18 +100,8 @@ function SoloView() {
   if (!data) {
     return <div>no listing</div>;
   }
-  if (!spotResult) {
-    return (
-      <div>
-        <div>{data.title}</div>
-        <div>{data.artist}</div>
-        <div>{data.description}</div>
-      </div>
-    );
-  }
-  // https://open.spotify.com/embed/track/0939D7aT18uBDS2MTjWzct?si=1c5a782b422d495f
   return (
-    <div>
+    <div className="soloview">
       <Modal show={show} onHide={handleHide}>
         <div>To: {isUser[0]}</div>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -134,46 +124,60 @@ function SoloView() {
           <button type="submit">Send</button>
         </form>
       </Modal>
-      <div>{data.title}</div>
-      <div>{data.artist}</div>
-      <div>{data.description}</div>
-      <iframe
-        title="song"
-        src={spotResult}
-        width="600"
-        height="80"
-        frameBorder="0"
-        allowtransparency="true"
-        allow="encrypted-media"
-      />
-      <br />
-      {isUser && !thisUser ? (
-        <button type="button" onClick={handleShow}>
-          Message User
-        </button>
-      ) : null}
-      {thisUser ? (
-        <span
-          role="link"
-          tabIndex={0}
-          onClick={() => {
-            deleteListing(data.listing_id)
-              .then(alert('deleted'), history.push('/'))
-              .catch((e) => {
-                alert('failed to delete');
-              });
-          }}
-          onKeyPress={() => {
-            deleteListing(data.listing_id)
-              .then(alert('deleted'), history.push('/'))
-              .catch((e) => {
-                alert('failed to delete');
-              });
-          }}
-        >
-          DELETE LISTING
-        </span>
-      ) : null}
+      <div>
+        <span className="soloviewTitle">{data.title}</span>
+        {spotResult ? (
+          <span className="soloviewEmbed">
+            <iframe
+              title="song"
+              src={spotResult}
+              width="600"
+              height="80"
+              frameBorder="0"
+              allowtransparency="true"
+              allow="encrypted-media"
+            />
+          </span>
+        ) : null}
+      </div>
+      <div className="soloviewArtist"> by {data.artist}</div>
+      <div className="soloviewDesc">{data.description}</div>
+      <div>
+        <span className="soloviewUser">Posted by {isUser[0]}</span>
+        {currentUser && isUser && !thisUser ? (
+          <button
+            className="soloviewMessage"
+            type="button"
+            onClick={handleShow}
+          >
+            Message User
+          </button>
+        ) : null}
+        {thisUser ? (
+          <button
+            type="button"
+            className="soloviewDelete"
+            role="link"
+            tabIndex={0}
+            onClick={() => {
+              deleteListing(data.listing_id)
+                .then(alert('deleted'), history.push('/'))
+                .catch((e) => {
+                  alert('failed to delete');
+                });
+            }}
+            onKeyPress={() => {
+              deleteListing(data.listing_id)
+                .then(alert('deleted'), history.push('/'))
+                .catch((e) => {
+                  alert('failed to delete');
+                });
+            }}
+          >
+            DELETE LISTING
+          </button>
+        ) : null}
+      </div>
     </div>
   );
 }

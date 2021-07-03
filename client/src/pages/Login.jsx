@@ -21,6 +21,7 @@ function Login() {
         history.push({
           pathname: '/',
         });
+        // window.href.location = '../';
       })
       .catch((e) => {
         if (e.response.data.errors[0]) {

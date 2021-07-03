@@ -1,0 +1,35 @@
+$good-color: #47525e;
+
+@mixin font-stack {
+  color: $good-color;
+  text-align: left;
+  font-weight: bold;
+}
+
+.listingcard {
+  @include font-stack;
+  border: 2px solid black;
+  margin: 2%;
+}
+
+.listingcardTitle {
+  @include font-stack;
+  font-style: bold;
+}
+
+.listingcardDate {
+  color: $good-color;
+  float: right;
+}
+
+.listingcardUser {
+  @include font-stack;
+  font-size: 24px;
+  line-height: 34px;
+}
+
+.listingcardMargins {
+  margin: 5%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}

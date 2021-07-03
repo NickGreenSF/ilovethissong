@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
+import { useForm } from 'react-hook-form';
 
 // when the viewing user is changed, prepare a set of messages that is only between the current user and the user being viewed
 
@@ -13,19 +14,25 @@ let users;
 let userIds;
 // The user that we are.
 let currentUser;
+let currentUsername;
+// The user we are looking at.
+let currentViewedUser;
+let fakeKey = 999;
 
 async function fetchUserMessages() {
   const user = await axios('/api/user/getCurrentUser');
   currentUser = user.data.user.id;
+  currentUsername = user.data.user.username;
   const res = await axios('/api/message/getUserMessages', {
     params: { userId: currentUser },
   });
-  console.log(res);
+  // console.log(res);
   return res.data.messages;
 }
 
 function changeViewedUser(userId, messages) {
-  console.log(messages);
+  // console.log(messages);
+  currentViewedUser = userId;
   const m = [];
   for (let i = messages.length - 1; i >= 0; i -= 1) {
     // console.log(messages[i]);
@@ -58,7 +65,7 @@ function sortData(messages) {
       userIds.push(messages[i].receiver.user_id);
     }
   }
-  console.log(users);
+  // console.log(users);
   dataSorted = true;
   return messages;
 }
@@ -69,6 +76,45 @@ function MessageBox() {
     fetchUserMessages
   );
   const [messages, setMessages] = useState([]);
+  const { register, handleSubmit, errors } = useForm({
+    criteriaMode: 'all',
+  });
+
+  function makeNewMessage(body, senderId, receiverId) {
+    const fakeMessage = {};
+    fakeMessage.createdAt = new Date();
+    fakeMessage.sender = {};
+    fakeMessage.receiver = {};
+    fakeMessage.body = body;
+    fakeMessage.message_id = 99;
+    fakeMessage.sender.user_id = senderId;
+    fakeMessage.receiver.user_id = receiverId;
+    data.unshift(fakeMessage);
+    // console.log(data);
+    const messageArray = messages;
+    const shortMessage = [currentUsername, body, fakeKey];
+    fakeKey += 1;
+    messageArray.push(shortMessage);
+    // console.log(messageArray);
+    setMessages(messageArray);
+  }
+
+  async function onSubmit(formData, e) {
+    // console.log(formData);
+    axios({
+      method: 'post',
+      url: '/api/message/postMessage',
+      data: {
+        messageBody: formData.body,
+        senderId: currentUser,
+        receiverId: currentViewedUser,
+      },
+    }).then(
+      makeNewMessage(formData.body, currentUser, currentViewedUser),
+      e.target.reset()
+    );
+  }
+
   if (isLoading || error) {
     return <div>Loading...</div>;
   }
@@ -79,7 +125,7 @@ function MessageBox() {
   if (dataSorted) {
     if (!initial) {
       const newMessages = changeViewedUser(users[0][1], data);
-      console.log(newMessages);
+      // console.log(newMessages);
       setMessages(newMessages);
       initial = true;
     }
@@ -91,7 +137,7 @@ function MessageBox() {
               type="button"
               onClick={() => {
                 const newMessages = changeViewedUser(user[1], data);
-                console.log(newMessages);
+                // console.log(newMessages);
                 setMessages(newMessages);
               }}
             >
@@ -105,6 +151,25 @@ function MessageBox() {
             <div>{message[0]}</div> {message[1]}
           </div>
         ))}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group">
+            <span>Message: </span>
+            <input
+              name="body"
+              className="form-control"
+              placeholder=""
+              ref={register({
+                required: 'Empty messages are not allowed.',
+                maxLength: {
+                  value: 400,
+                  message: 'Your message is too long.',
+                },
+              })}
+            />
+            {errors.body && <p>{errors.body.message}</p>}
+          </div>
+          <button type="submit">Send</button>
+        </form>
       </div>
     );
   }

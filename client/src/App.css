@@ -1,5 +1,153 @@
+.listingcard {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  border: 2px solid black;
+  margin: 2%;
+}
+
+.listingcardTitle {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  font-style: bold;
+}
+
+.listingcardDate {
+  color: #47525e;
+  float: right;
+}
+
+.listingcardUser {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 34px;
+}
+
+.listingcardMargins {
+  margin: 5%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+.multiview {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.multiviewSearch {
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  font-size: 24px;
+}
+
+.toppartSpan {
+  float: right;
+  margin-top: 1%;
+}
+
+.toppartMain {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  margin-left: 10%;
+  margin-right: 10%;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.toppartTitle {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  font-size: 250%;
+  margin-right: 4%;
+  float: left;
+  margin-top: 0;
+}
+
+.toppartText {
+  font-size: 125%;
+  margin-right: 4%;
+}
+
+.toppartSpan:hover {
+  /*color: #007bff;*/
+  color: black;
+  text-decoration: underline;
+}
+
+.toppartA {
+  color: #47525e;
+}
+
+.soloview {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.soloviewTitle {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  font-size: 400%;
+}
+
+.soloviewArtist {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  font-size: 250%;
+}
+
+.soloviewDesc {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  font-size: 200%;
+  max-width: 60%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.soloviewUser {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  font-size: 175%;
+}
+
+.soloviewEmbed {
+  float: right;
+}
+
+.soloviewMessage {
+  margin-left: 1%;
+  background-color: rgba(0, 0, 255, 0.692);
+  color: whitesmoke;
+  padding: 2%;
+  padding-top: 0.4%;
+  padding-bottom: 0.4%;
+  border: 1px solid black;
+}
+
+.soloviewDelete {
+  margin-left: 1%;
+  background-color: red;
+  color: whitesmoke;
+  padding: 2%;
+  padding-top: 0.4%;
+  padding-bottom: 0.4%;
+  border: 1px solid black;
+}
+
 body {
-  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /*# sourceMappingURL=App.css.map */

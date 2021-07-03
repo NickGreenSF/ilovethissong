@@ -1,0 +1,57 @@
+$good-color: #47525e;
+
+@mixin font-stack {
+  color: $good-color;
+  text-align: left;
+  font-weight: bold;
+}
+
+@mixin button-stack($bcolor) {
+  margin-left: 1%;
+  background-color: $bcolor;
+  color: whitesmoke;
+  padding: 2%;
+  padding-top: 0.4%;
+  padding-bottom: 0.4%;
+  border: 1px solid black;
+}
+
+.soloview {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.soloviewTitle {
+  @include font-stack;
+  font-size: 400%;
+}
+
+.soloviewArtist {
+  @include font-stack;
+  font-size: 250%;
+}
+
+.soloviewDesc {
+  @include font-stack;
+  font-size: 200%;
+  max-width: 60%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.soloviewUser {
+  @include font-stack;
+  font-size: 175%;
+}
+
+.soloviewEmbed {
+  float: right;
+}
+
+.soloviewMessage {
+  @include button-stack($bcolor: rgba(0, 0, 255, 0.692));
+}
+
+.soloviewDelete {
+  @include button-stack($bcolor: red);
+}

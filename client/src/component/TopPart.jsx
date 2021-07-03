@@ -19,17 +19,40 @@ function handleRandomKeyPress() {
   handleRandomClick();
 }
 
-function handleLogoutClick() {
-  console.log('logout');
+async function handleLogoutClick() {
+  const res = await axios('/api/user/logoutUser');
+  console.log(res);
+  window.location.href = './';
 }
 
 function TopPart() {
   const { data } = useQuery('currentUser', fetchCurrentUser);
   if (data) {
     return (
-      <div>
-        <span>I Love This Song! </span>
+      <div className="toppartMain">
+        <a className="toppartTitle toppartSpan" href="./">
+          I Love This Song!{' '}
+        </a>
         <span
+          role="link"
+          tabIndex={0}
+          onClick={handleLogoutClick}
+          onKeyPress={handleLogoutClick}
+          className="toppartSpan toppartText"
+        >
+          {' '}
+          Log out
+        </span>
+        <a href="./dashboard" className="toppartText toppartA toppartSpan">
+          {' '}
+          Logged in as {data.username}{' '}
+        </a>
+        <a href="./listingsubmit" className="toppartText toppartA toppartSpan">
+          {' '}
+          Create Listing{' '}
+        </a>
+        <span
+          className="toppartText toppartSpan"
           role="link"
           tabIndex={0}
           onClick={handleRandomClick}
@@ -37,33 +60,29 @@ function TopPart() {
         >
           View Random Page
         </span>
-        <span> Logged in as {data.username}</span>
-        <a href="./dashboard"> View Dashboard </a>
-        <span
-          role="link"
-          tabIndex={0}
-          onClick={handleLogoutClick}
-          onKeyPress={handleLogoutClick}
-        >
-          {' '}
-          Log out
-        </span>
       </div>
     );
   }
   return (
-    <div>
-      <span>I Love This Song! </span>
+    <div className="toppartMain">
+      <a href="./" className="toppartTitle toppartSpan">
+        I Love This Song!{' '}
+      </a>
+      <a href="./register" className="toppartText toppartA toppartSpan">
+        Register{' '}
+      </a>
+      <a href="./login" className="toppartText toppartA toppartSpan">
+        Log In{' '}
+      </a>
       <span
         role="link"
         tabIndex={0}
         onClick={handleRandomClick}
         onKeyPress={handleRandomKeyPress}
+        className="toppartText toppartSpan"
       >
         View Random Page
       </span>
-      <span>Log In </span>
-      <span>Register </span>
     </div>
   );
 }

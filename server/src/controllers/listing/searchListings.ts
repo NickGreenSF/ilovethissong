@@ -2,31 +2,29 @@
 
 import { Listing } from '../../database/entities/Listing'
 import { Request, Response } from 'express'
-import { Like } from 'typeorm'
+import { getRepository } from 'typeorm'
 
 export const searchListings = async (req: Request, res: Response) => {
   // search with a query
   if (req.query.search) {
     const { search } = req.query
-    console.log(search)
-    // search with JUST a query.
-    const listings = await Listing.find({
-      where: { title: Like(`%${search}%`) },
-    })
-    const addToListings = await Listing.find({
-      where: { artist: Like(`%${search}%`) },
-    })
-    const ids = []
-    const results = listings.concat(addToListings)
-    for (let i = 0; i < results.length; i++) {
-      if (!ids.includes(results[i].listing_id)) {
-        ids.push(results[i].listing_id)
-      } else {
-        results[i].title = null
-      }
-    }
+    const l = await getRepository(Listing)
+      .createQueryBuilder('listing')
+      .select([
+        'listing.listing_id',
+        'listing.title',
+        'listing.description',
+        'listing.artist',
+        'listing.createdAt',
+        'user.username',
+        'user.isAdmin',
+      ])
+      .where('listing.title like :term OR listing.artist like :term', { term: `%${search}%` })
+      .orderBy('listing.listing_id', 'DESC')
+      .leftJoin('listing.user', 'user')
+      .getMany()
     return res.send({
-      data: results,
+      listings: l,
       errors: [],
     })
   }

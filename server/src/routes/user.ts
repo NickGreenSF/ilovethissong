@@ -9,7 +9,7 @@ const router = express.Router()
 router.post('/loginUser', loginUser)
 router.post('/registerUser', registerUser)
 router.get('/getCurrentUser', getCurrentUser)
-router.post('/logoutUser', logoutUser)
+router.get('/logoutUser', logoutUser)
 router.post('/banUser', banUser)
 
 export default router
