@@ -10,7 +10,12 @@
   color: #47525e;
   text-align: left;
   font-weight: bold;
-  font-style: bold;
+}
+
+.listingcardTitle:hover {
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .listingcardDate {
@@ -30,6 +35,10 @@
   margin: 5%;
   margin-top: 1%;
   margin-bottom: 2%;
+}
+
+.listingcardDesc {
+  word-wrap: break-word;
 }
 
 .multiview {
@@ -78,6 +87,7 @@
   /*color: #007bff;*/
   color: black;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .toppartA {
@@ -111,6 +121,7 @@
   max-width: 60%;
   margin-top: 1%;
   margin-bottom: 1%;
+  word-wrap: break-word;
 }
 
 .soloviewUser {
@@ -124,7 +135,7 @@
   float: right;
 }
 
-.soloviewMessage {
+.soloviewMessageBtn {
   margin-left: 1%;
   background-color: rgba(0, 0, 255, 0.692);
   color: whitesmoke;
@@ -134,9 +145,131 @@
   border: 1px solid black;
 }
 
-.soloviewDelete {
+.soloviewDeleteBtn {
   margin-left: 1%;
   background-color: red;
+  color: whitesmoke;
+  padding: 2%;
+  padding-top: 0.4%;
+  padding-bottom: 0.4%;
+  border: 1px solid black;
+}
+
+/*.soloviewTo {
+  @include font-stack;
+  margin: 2%;
+}
+
+.soloviewMsg {
+  @include font-stack;
+  margin: 2%;
+}*/
+.soloviewFormText {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  margin: 2%;
+}
+
+.soloviewMsgSendBtn {
+  margin-left: 1%;
+  background-color: rgba(0, 0, 255, 0.692);
+  color: whitesmoke;
+  padding: 2%;
+  padding-top: 0.4%;
+  padding-bottom: 0.4%;
+  border: 1px solid black;
+  margin: 2%;
+}
+
+.createListing {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  margin: 10%;
+  margin-top: 0;
+}
+
+.listingsubmitBtns {
+  position: relative;
+  padding-top: 60px;
+  width: 40%;
+  margin: 0 auto;
+}
+
+/*This holds the rules for both the Login and Register pages, since they're so similar.*/
+.userform {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+}
+
+.userformTitle {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+}
+
+.dashboardBtnHolder {
+  margin-left: 10%;
+}
+
+.dashboardBtn {
+  margin-left: 1%;
+  background-color: gray;
+  color: whitesmoke;
+  padding: 2%;
+  padding-top: 0.4%;
+  padding-bottom: 0.4%;
+  border: 1px solid black;
+}
+
+.listingboxMultiview {
+  margin-left: 20%;
+  margin-right: 30%;
+}
+
+.messageboxBox {
+  color: #47525e;
+  text-align: left;
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top: 1%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.messageboxBtn {
+  margin-left: 1%;
+  background-color: whitesmoke;
+  color: black;
+  padding: 2%;
+  padding-top: 0.4%;
+  padding-bottom: 0.4%;
+  border: 1px solid black;
+  margin-left: 5%;
+  width: 90%;
+  margin-right: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-align: left;
+  margin-bottom: 1%;
+}
+
+.messageboxMsgs {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.messageSender {
+  font-style: italic;
+  font-weight: normal;
+}
+
+.messageSend {
+  margin-left: 1%;
+  background-color: blue;
   color: whitesmoke;
   padding: 2%;
   padding-top: 0.4%;
@@ -148,6 +281,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.admin {
+  color: green;
+  font-style: italic;
 }
 
 /*# sourceMappingURL=App.css.map */

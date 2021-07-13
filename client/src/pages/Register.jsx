@@ -35,9 +35,9 @@ function Register() {
   };
 
   return (
-    <div className="col-lg-4 offset-lg-4">
+    <div className="col-lg-4 offset-lg-4 userform">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Register</h3>
+        <h3 className="userformTitle">Register</h3>
         <div className="form-group">
           <span>Username</span>
           <input

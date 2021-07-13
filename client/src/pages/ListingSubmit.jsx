@@ -59,14 +59,14 @@ function ListingSubmit() {
   };
 
   return (
-    <div className="page create-listing">
+    <div className="page createListing">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
-          <span>Title</span>
+          <span>What's your favorite song right now?</span>
           <input
             name="title"
             className="form-control"
-            placeholder="What's your favorite song right now?"
+            placeholder="Title"
             ref={register({
               required: 'Please title your listing',
               maxLength: {
@@ -79,11 +79,11 @@ function ListingSubmit() {
         </div>
 
         <div className="form-group">
-          <span>Artist</span>
+          <span>Who made it?</span>
           <input
             name="artist"
             className="form-control"
-            placeholder="Who made it?"
+            placeholder="Artist"
             ref={register({
               required: 'Please submit an artist',
               maxLength: {
@@ -96,37 +96,22 @@ function ListingSubmit() {
         </div>
 
         <div className="form-group">
-          <span>Description</span>
+          <span>What do you love about this song?</span>
           <Form.Control
             as="textarea"
             className="form-control"
-            placeholder="What do you love about this song?"
+            placeholder="Description"
             name="description"
             ref={register({
               maxLength: {
-                value: 400,
+                value: 3000,
                 message: 'Your description is too long.',
               },
             })}
           />
           {errors.description && <p>{errors.description.message}</p>}
         </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-          }}
-        />
-        <div
-          style={{
-            position: 'relative',
-            paddingTop: '60px',
-            width: '40%',
-            margin: '0 auto',
-          }}
-        >
+        <div className="listingsubmitBtns">
           <button type="submit" className="btn btn-primary btn-block">
             Submit for approval
           </button>

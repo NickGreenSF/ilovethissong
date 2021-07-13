@@ -1,0 +1,17 @@
+/*This holds the rules for both the Login and Register pages, since they're so similar.*/
+
+$good-color: #47525e;
+
+@mixin font-stack {
+  color: $good-color;
+  text-align: left;
+  font-weight: bold;
+}
+
+.userform {
+  @include font-stack;
+}
+
+.userformTitle {
+  @include font-stack;
+}

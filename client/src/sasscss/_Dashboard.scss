@@ -1,0 +1,64 @@
+$good-color: #47525e;
+
+@mixin font-stack {
+  color: $good-color;
+  text-align: left;
+  font-weight: bold;
+}
+
+@mixin button-stack($bcolor, $fcolor) {
+  margin-left: 1%;
+  background-color: $bcolor;
+  color: $fcolor;
+  padding: 2%;
+  padding-top: 0.4%;
+  padding-bottom: 0.4%;
+  border: 1px solid black;
+}
+
+.dashboardBtnHolder {
+  margin-left: 10%;
+}
+
+.dashboardBtn {
+  @include button-stack(gray, whitesmoke);
+}
+
+.listingboxMultiview {
+  margin-left: 20%;
+  margin-right: 30%;
+}
+
+.messageboxBox {
+  @include font-stack;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top: 1%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.messageboxBtn {
+  @include button-stack(whitesmoke, black);
+  margin-left: 5%;
+  width: 90%;
+  margin-right: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-align: left;
+  margin-bottom: 1%;
+}
+
+.messageboxMsgs {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.messageSender {
+  font-style: italic;
+  font-weight: normal;
+}
+
+.messageSend {
+  @include button-stack(blue, whitesmoke);
+}

@@ -36,9 +36,9 @@ function Login() {
   };
 
   return (
-    <div className="col-lg-4 offset-lg-4">
+    <div className="col-lg-4 offset-lg-4 userform">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Login</h3>
+        <h3 className="userformTitle">Login</h3>
         <div className="form-group">
           <span>Username</span>
           <input

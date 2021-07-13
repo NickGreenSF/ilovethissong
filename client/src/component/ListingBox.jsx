@@ -26,7 +26,7 @@ function ListingBox() {
   }
   if (data) {
     return (
-      <div>
+      <div className="listingboxMultiview">
         {data.map((listing) => (
           <div key={listing.listing_id}>
             <ListingCard
@@ -35,6 +35,8 @@ function ListingBox() {
               description={listing.description}
               user={listing.user.username}
               createdAt={listing.createdAt}
+              id={listing.listing_id}
+              isAdmin={listing.user.isAdmin}
             />
           </div>
         ))}

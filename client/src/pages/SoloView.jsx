@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 
 let spotResult;
 let thisUser = false;
+// isUser contains the username, userId, and admin status of the user that posted this listing.
 let isUser;
 let currentUser;
 
@@ -34,7 +35,11 @@ const fetchListing = async () => {
   });
   console.log(res);
   if (res.data.listing.user.user_id) {
-    isUser = [res.data.listing.user.username, res.data.listing.user.user_id];
+    isUser = [
+      res.data.listing.user.username,
+      res.data.listing.user.user_id,
+      res.data.listing.user.isAdmin,
+    ];
   }
   console.log(isUser);
   if (user.data.user && res.data.listing.user.user_id === user.data.user.id) {
@@ -102,10 +107,10 @@ function SoloView() {
   }
   return (
     <div className="soloview">
-      <Modal show={show} onHide={handleHide}>
-        <div>To: {isUser[0]}</div>
+      <Modal className="soloviewModal" show={show} onHide={handleHide}>
+        <div className="soloviewFormText">To: {isUser[0]}</div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-group">
+          <div className="soloviewFormText form-group">
             <span>Message: </span>
             <input
               name="body"
@@ -121,7 +126,9 @@ function SoloView() {
             />
             {errors.body && <p>{errors.body.message}</p>}
           </div>
-          <button type="submit">Send</button>
+          <button className="soloviewMsgSendBtn" type="submit">
+            Send
+          </button>
         </form>
       </Modal>
       <div>
@@ -143,20 +150,27 @@ function SoloView() {
       <div className="soloviewArtist"> by {data.artist}</div>
       <div className="soloviewDesc">{data.description}</div>
       <div>
-        <span className="soloviewUser">Posted by {isUser[0]}</span>
+        <span className="soloviewUser">
+          Posted by
+          {isUser[2] ? (
+            <span className="admin"> {isUser[0]} [A]</span>
+          ) : (
+            <span> {isUser[0]}</span>
+          )}
+        </span>
         {currentUser && isUser && !thisUser ? (
           <button
-            className="soloviewMessage"
+            className="soloviewMessageBtn"
             type="button"
             onClick={handleShow}
           >
             Message User
           </button>
         ) : null}
-        {thisUser ? (
+        {thisUser || (currentUser && currentUser.admin) ? (
           <button
             type="button"
-            className="soloviewDelete"
+            className="soloviewDeleteBtn"
             role="link"
             tabIndex={0}
             onClick={() => {

@@ -1,0 +1,20 @@
+$good-color: #47525e;
+
+@mixin font-stack {
+  color: $good-color;
+  text-align: left;
+  font-weight: bold;
+}
+
+.createListing {
+  @include font-stack;
+  margin: 10%;
+  margin-top: 0;
+}
+
+.listingsubmitBtns {
+  position: relative;
+  padding-top: 60px;
+  width: 40%;
+  margin: 0 auto;
+}

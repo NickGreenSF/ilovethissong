@@ -14,7 +14,12 @@ $good-color: #47525e;
 
 .listingcardTitle {
   @include font-stack;
-  font-style: bold;
+}
+
+.listingcardTitle:hover {
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .listingcardDate {
@@ -32,4 +37,8 @@ $good-color: #47525e;
   margin: 5%;
   margin-top: 1%;
   margin-bottom: 2%;
+}
+
+.listingcardDesc {
+  word-wrap: break-word;
 }

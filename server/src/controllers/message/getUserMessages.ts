@@ -21,6 +21,7 @@ export const getUserMessages = async (req: Request, res: Response) => {
       'message.createdAt',
       'sender.user_id',
       'sender.username',
+      'sender.isAdmin',
       'receiver.user_id',
       'receiver.username',
     ])

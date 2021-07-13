@@ -9,11 +9,19 @@ function Dashboard() {
   const RenderedPage = components[display];
   return (
     <div>
-      <div>
-        <button type="button" onClick={() => setDisplay('ListingBox')}>
+      <div className="dashboardBtnHolder">
+        <button
+          className="dashboardBtn"
+          type="button"
+          onClick={() => setDisplay('ListingBox')}
+        >
           My Listings
         </button>
-        <button type="button" onClick={() => setDisplay('MessageBox')}>
+        <button
+          className="dashboardBtn"
+          type="button"
+          onClick={() => setDisplay('MessageBox')}
+        >
           My Messages
         </button>
       </div>

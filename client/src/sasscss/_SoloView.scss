@@ -37,6 +37,7 @@ $good-color: #47525e;
   max-width: 60%;
   margin-top: 1%;
   margin-bottom: 1%;
+  word-wrap: break-word;
 }
 
 .soloviewUser {
@@ -48,10 +49,30 @@ $good-color: #47525e;
   float: right;
 }
 
-.soloviewMessage {
+.soloviewMessageBtn {
   @include button-stack($bcolor: rgba(0, 0, 255, 0.692));
 }
 
-.soloviewDelete {
+.soloviewDeleteBtn {
   @include button-stack($bcolor: red);
+}
+
+/*.soloviewTo {
+  @include font-stack;
+  margin: 2%;
+}
+
+.soloviewMsg {
+  @include font-stack;
+  margin: 2%;
+}*/
+
+.soloviewFormText {
+  @include font-stack;
+  margin: 2%;
+}
+
+.soloviewMsgSendBtn {
+  @include button-stack($bcolor: rgba(0, 0, 255, 0.692));
+  margin: 2%;
 }
