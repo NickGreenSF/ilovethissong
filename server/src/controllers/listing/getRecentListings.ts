@@ -23,7 +23,6 @@ export const getRecentListings = async (req: Request, res: Response) => {
       .orderBy('listing.listing_id', 'DESC')
       .where('listing.listing_id <= :lId', { lId: req.query.listingId })
       .leftJoin('listing.user', 'user')
-      .limit(6)
       .getMany()
   } else {
     listings = await getRepository(Listing)

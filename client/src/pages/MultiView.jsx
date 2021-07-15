@@ -7,6 +7,9 @@ import ListingCard from '../component/ListingCard';
 
 let term;
 let lastId;
+
+// This variable controls the InfiniteScroll, which currently isn't being used due to a bug involving how data is handled,
+// which has been commented out.
 let moreData = true;
 
 async function searchListings(lId) {
@@ -26,10 +29,10 @@ async function searchListings(lId) {
       lastId = res.data.listings[res.data.listings.length - 1].listing_id;
     }
     const r = res.data.listings;
-    if (r.length === 6) {
-      moreData = true;
-      r.pop();
-    }
+    // if (r.length === 6) {
+    //   moreData = true;
+    //   r.pop();
+    // }
     return r;
   }
   term = decodeURI(term);
@@ -40,17 +43,19 @@ async function searchListings(lId) {
       listingId: lId,
     },
   });
-  // console.log(result);
+  console.log(result);
   if (result.data.listings.length > 0) {
     lastId = result.data.listings[result.data.listings.length - 1].listing_id;
   }
   const re = result.data.listings;
-  console.log(re);
-  if (re.length === 3) {
-    moreData = true;
-    re.pop();
-    console.log(re);
-  }
+  // console.log(re);
+  // console.log(re.length);
+  // if (re.length === 6) {
+  //   moreData = true;
+  //   re.pop();
+  //   console.log(re);
+  // }
+  console.log(moreData);
   return re;
 }
 

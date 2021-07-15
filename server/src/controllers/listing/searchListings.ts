@@ -27,7 +27,7 @@ export const searchListings = async (req: Request, res: Response) => {
         )
         .orderBy('listing.listing_id', 'DESC')
         .leftJoin('listing.user', 'user')
-        .limit(6)
+        .limit(600)
         .getMany()
     } else {
       l = await getRepository(Listing)
@@ -44,7 +44,6 @@ export const searchListings = async (req: Request, res: Response) => {
         .where('listing.title like :term OR listing.artist like :term', { term: `%${search}%` })
         .orderBy('listing.listing_id', 'DESC')
         .leftJoin('listing.user', 'user')
-        .limit(6)
         .getMany()
     }
     if (!l) {
@@ -58,9 +57,10 @@ export const searchListings = async (req: Request, res: Response) => {
         ],
       })
     }
+    console.log(l)
     return res.send({
       listings: l,
-      errors: [],
+      errors: ['test'],
     })
   }
   return res.send({
