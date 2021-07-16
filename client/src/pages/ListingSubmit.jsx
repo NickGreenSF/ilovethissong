@@ -113,7 +113,7 @@ function ListingSubmit() {
         </div>
         <div className="listingsubmitBtns">
           <button type="submit" className="btn btn-primary btn-block">
-            Submit for approval
+            Submit
           </button>
           <button
             type="submit"
