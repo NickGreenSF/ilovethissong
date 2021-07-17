@@ -62,3 +62,9 @@ $good-color: #47525e;
 .messageSend {
   @include button-stack(blue, whitesmoke);
 }
+
+.nothing {
+  @include font-stack;
+  margin-left: 10%;
+  margin-top: 5%;
+}

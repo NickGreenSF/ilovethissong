@@ -130,6 +130,10 @@ function MessageBox() {
     return <div>Loading... </div>;
   }
   if (dataSorted) {
+    console.log(users);
+    if (!users || users.length === 0) {
+      return <div className="nothing">You have no messages.</div>;
+    }
     if (!initial) {
       const newMessages = changeViewedUser(users[0][1], data);
       // console.log(newMessages);
