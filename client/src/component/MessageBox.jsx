@@ -28,6 +28,10 @@ async function fetchUserMessages() {
   const res = await axios('/api/message/getUserMessages', {
     params: { userId: currentUser },
   });
+  const r = await axios('/api/user/updateRead', {
+    params: { userId: currentUser },
+  });
+  console.log(r);
   // console.log(res);
   return res.data.messages;
 }

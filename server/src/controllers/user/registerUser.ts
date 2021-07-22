@@ -65,5 +65,9 @@ export const registerUser = async (req: CustomRequest, res: Response) => {
     req.session.userId = newUser.user_id
   }
 
-  res.send({ message: "user successfully created", user: { username: newUser.username }, errors: [] })
+  res.send({
+    message: 'user successfully created',
+    user: { username: newUser.username },
+    errors: [],
+  })
 }

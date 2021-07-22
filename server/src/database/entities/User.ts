@@ -1,4 +1,11 @@
-import { PrimaryGeneratedColumn, Entity, Column, BaseEntity, OneToMany } from 'typeorm'
+import {
+  PrimaryGeneratedColumn,
+  Entity,
+  Column,
+  BaseEntity,
+  OneToMany,
+  CreateDateColumn,
+} from 'typeorm'
 import { Listing } from './Listing'
 import { Message } from './Message'
 
@@ -27,8 +34,11 @@ export class User extends BaseEntity {
   listings!: Listing[]
 
   @OneToMany(() => Message, (message) => message.sender, {})
-  sentMessages!: Listing[]
+  sentMessages!: Message[]
 
   @OneToMany(() => Message, (message) => message.receiver, {})
-  receivedMessages!: Listing[]
+  receivedMessages!: Message[]
+
+  @CreateDateColumn()
+  lastRead = new Date()
 }

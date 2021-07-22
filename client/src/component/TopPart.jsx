@@ -45,7 +45,7 @@ function TopPart() {
         </span>
         <a href="./dashboard" className="toppartText toppartA toppartSpan">
           {' '}
-          Logged in as {data.username}{' '}
+          Logged in as {data.username} ({data.notif})
         </a>
         <a href="./listingsubmit" className="toppartText toppartA toppartSpan">
           {' '}

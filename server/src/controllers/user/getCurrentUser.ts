@@ -24,7 +24,9 @@ export const getCurrentUser = async (req: CustomRequest, res: Response) => {
   // get user from database
   let user: User
   try {
-    user = await User.findOne(req.session.userId)
+    user = await User.findOne(req.session.userId, {
+      relations: ['receivedMessages'],
+    })
   } catch (e) {
     res.status(500)
     return res.send({
@@ -33,8 +35,33 @@ export const getCurrentUser = async (req: CustomRequest, res: Response) => {
     })
   }
   // user is logged in so return that users data
+  // calculating the number of unread messages and returning that to the frontend
+  let notif = 0
+  if (user.receivedMessages && user.lastRead) {
+    const rec = user.receivedMessages
+    const lr = user.lastRead
+
+    for (let i = 0; i < rec.length; i++) {
+      if (rec[i].createdAt > lr) {
+        notif += 1
+      }
+    }
+  }
+
+  // The compiler hates this, but it does what it's supposed to do, gotta move it elsewhere.
+  // await User.save({
+  //   user_id: user.user_id,
+  //   lastRead: new Date(),
+  // })
+
   res.send({
-    user: { username: user.username, banned: user.banned, admin: user.isAdmin, id: user.user_id },
+    user: {
+      username: user.username,
+      banned: user.banned,
+      admin: user.isAdmin,
+      id: user.user_id,
+      notif: notif,
+    },
     errors: [],
   })
 }
